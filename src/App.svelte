@@ -1,18 +1,23 @@
 <script>
-	let name = "Rama";
+	let firstName = "John";
+	let lastName = 'Cena';
 	let beltColor = 'black';
 
-	const handleClick = () => { 
-		beltColor = 'orange';
+	/** Reactive values - Which are reactive, they update automatically, when the data they depend on changes. It watches certain values and update in the FE.*/
+	$: fullName = `${firstName} - ${lastName}`; 
+	$: console.log(beltColor) // Reactive statements
+	/** We can also include multiple reactive statements*/
+	$: {
+		console.log(beltColor);
+		console.log(fullName);
 	}
-
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p style="color: {beltColor}">Belt - {beltColor}</p>
+	<p>{fullName} - {beltColor} belt</p>
+	<input type="text" bind:value={firstName}/>
+	<input type="text" bind:value={lastName}/>
 	<input type="text" bind:value={beltColor}/>
-	<button on:click={handleClick}>Update belt color</button>
 </main>
 
 <style>
